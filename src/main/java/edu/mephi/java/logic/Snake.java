@@ -1,10 +1,12 @@
 package edu.mephi.java.logic;
 import edu.mephi.java.engine.ArrayObservableDeque;
 import edu.mephi.java.engine.Drawable;
+import edu.mephi.java.engine.GraphicsUtils;
+import edu.mephi.java.engine.Observable;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.List;
 
 public class Snake {
     public static final Color HEAD_COLOR = Color.GREEN;
@@ -25,6 +27,10 @@ public class Snake {
         _direction = direction;
     }
 
+    public List<Snake.SnakePart> getPoints() {
+        return _points.getArray();
+    }
+
     public SnakePart getHead() {
         return _points.getLast();
     }
@@ -38,7 +44,8 @@ public class Snake {
         SnakeUtils.AddPartToSnake(_points, _direction);
     }
 
-    public void eatApple(){
+    public void eatApple(Apple apple, Observable observable){
+        observable.removeObserver(apple);
         SnakeUtils.AddPartToSnake(_points, _direction);
     }
 
@@ -68,18 +75,13 @@ public class Snake {
         }
 
        @Override
-       public void draw(GridLayout layout, Graphics g) {
-           int x = _point.x * layout.getRows();
-           int y = _point.y * layout.getColumns();
-           g.setColor(getColor());
-           g.drawRect(x, y, layout.getRows(), layout.getColumns());
+       public void draw(JPanel panel, Graphics g) {
+           GraphicsUtils.drawCell(panel, g, _point, getColor());
        }
 
        @Override
-       public void clear(GridLayout layout, Graphics g) {
-           int x = _point.x * layout.getRows();
-           int y = _point.y * layout.getColumns();
-           g.clearRect(x, y, layout.getRows(), layout.getColumns());
+       public void clear(JPanel panel, Graphics g) {
+           GraphicsUtils.drawCell(panel, g, _point, Color.WHITE);
        }
 
 

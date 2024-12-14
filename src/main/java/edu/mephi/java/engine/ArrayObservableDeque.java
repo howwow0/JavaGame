@@ -1,6 +1,8 @@
 package edu.mephi.java.engine;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArrayObservableDeque<E extends Drawable> {
     private final ArrayDeque<E> deque;
@@ -38,5 +40,9 @@ public class ArrayObservableDeque<E extends Drawable> {
 
     public void removeFirst() {
        _observable.removeObserver(deque.removeFirst());
+    }
+
+    public List<E> getArray(){
+        return new ArrayList<>(deque);
     }
 }

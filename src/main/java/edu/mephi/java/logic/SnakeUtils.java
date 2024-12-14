@@ -15,4 +15,5 @@ public class SnakeUtils {
         int dirY = (direction == Direction.UP) ? -1 : ((direction == Direction.DOWN) ? 1 : 0);
         points.addLast(new Snake.SnakePart(lastPoint.x + dirX, lastPoint.y + dirY, Snake.HEAD_COLOR));
     }
+
 }
