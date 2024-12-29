@@ -10,8 +10,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Game extends JPanel implements ActionListener {
-    public static final int HEIGHT = 10;
-    public static final int WIDTH = 10;
+    public static final int HEIGHT = 20; //Высота и ширина поля, можно менять :)
+    public static final int WIDTH = 20;
     private final Timer _timer;
     private SnakeKeyListener _keyListener;
     private Observable _graphicsEngine;
@@ -27,7 +27,7 @@ public class Game extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE));
         setBackground(Color.WHITE);
         _score = new Score(jFrame);
-        _timer = new Timer(200, this);
+        _timer = new Timer(200, this); // Скорость "ползанья" змейки
     }
 
     public void Start() {
