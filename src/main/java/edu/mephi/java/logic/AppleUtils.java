@@ -1,7 +1,7 @@
 package edu.mephi.java.logic;
 
 import edu.mephi.java.Game;
-import edu.mephi.java.engine.Observable;
+import edu.mephi.java.engine.observable.Observable;
 
 import java.awt.*;
 import java.util.*;
@@ -19,6 +19,7 @@ public class AppleUtils {
         observable.addObserver(apple);
         return apple;
     }
+
 
     private static Set<Point> getOccupiedCells(List<Snake.SnakePart> snakeParts) {
         Set<Point> occupied = new HashSet<>();

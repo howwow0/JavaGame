@@ -7,19 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Apple implements Drawable {
-    private Point _point;
-    private Color _color;
-
-    public void setPoint(Point point) {
-        _point = point;
-    }
+    private final Point _point;
+    private final Color _color;
 
     public Point getPoint() {
         return _point;
-    }
-
-    public void setColor(Color color) {
-        _color = color;
     }
 
     public Color getColor() {

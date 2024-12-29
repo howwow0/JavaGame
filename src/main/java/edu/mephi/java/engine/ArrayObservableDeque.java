@@ -1,21 +1,17 @@
 package edu.mephi.java.engine;
 
+import edu.mephi.java.engine.observable.Observable;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-
+//Коллекция элементы которой автоматически рисуются нашим движком
 public class ArrayObservableDeque<E extends Drawable> {
     private final ArrayDeque<E> deque;
     private final Observable _observable;
     public ArrayObservableDeque(Observable observable) {
         this.deque = new ArrayDeque<>();
         _observable = observable;
-    }
-
-    public void addFirst(E e) {
-        _observable.addObserver(e);
-        deque.addFirst(e);
-        _observable.notifyObservers();
     }
 
     public boolean add(E e) {
@@ -29,13 +25,17 @@ public class ArrayObservableDeque<E extends Drawable> {
         deque.addLast(e);
         _observable.notifyObservers();
     }
+    public void clear()
+    {
+        for(E e : deque)
+        {
+            _observable.removeObserver(e);
+        }
+        deque.clear();
+    }
 
     public E getLast() {
         return deque.getLast();
-    }
-
-    public E getFirst() {
-        return deque.getFirst();
     }
 
     public void removeFirst() {

@@ -2,7 +2,7 @@ package edu.mephi.java.logic;
 import edu.mephi.java.engine.ArrayObservableDeque;
 import edu.mephi.java.engine.Drawable;
 import edu.mephi.java.engine.GraphicsUtils;
-import edu.mephi.java.engine.Observable;
+import edu.mephi.java.engine.observable.Observable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,11 +35,8 @@ public class Snake {
         return _points.getLast();
     }
 
-    public SnakePart getTail() {
-        return _points.getFirst();
-    }
-
     public void move() {
+        if(_direction == Direction.NONE) return;
         _points.removeFirst();
         SnakeUtils.AddPartToSnake(_points, _direction);
     }
@@ -48,14 +45,13 @@ public class Snake {
         observable.removeObserver(apple);
         SnakeUtils.AddPartToSnake(_points, _direction);
     }
+    public void clearSnake(){
+        _points.clear();
+    }
 
    public static class SnakePart implements Drawable {
-        private Point _point;
+        private final Point _point;
         private Color _color;
-
-        public void setPoint(Point point) {
-            _point = point;
-        }
 
         public Point getPoint() {
             return _point;
