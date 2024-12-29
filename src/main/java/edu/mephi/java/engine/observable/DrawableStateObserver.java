@@ -14,7 +14,7 @@ public class DrawableStateObserver implements Observable, ActionListener {
     private final Graphics _graphics;
 
     public DrawableStateObserver(JPanel panel) {
-        Timer _timer = new Timer(50, this);
+        Timer _timer = new Timer(100, this);
         _drawables = new ArrayList<>();
         _panel = panel;
         _graphics = panel.getGraphics();
